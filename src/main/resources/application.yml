@@ -1,0 +1,54 @@
+# Server
+server:
+  port: 8080
+  servlet:
+    path: /
+  tomcat:
+    uri-encoding: UTF-8
+# MySQL
+spring:
+  datasource:
+    url: jdbc:mysql://47.97.212.12:3306/wallet?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&autoReconnect=true&failOverReadOnly=false&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=Hongkong
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+  quartz:
+    properties:
+      org.quartz.threadPool.threadCount: 15
+# MyBatis
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.my.demo.wallet.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    use-generated-keys: true
+    default-fetch-size: 100
+    default-statement-timeout: 300
+# Log
+logging:
+  path: /data/log
+  file: log/wallet.log
+  file.max-size: 10MB
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS
+  level:
+    one.aipay: debug
+    org.springframework: warn
+    org.spring.springboot.dao: debug
+
+
+ethereum:
+  rpcClient:
+    # token4dev:12ab05a5e3b24d75b4c43a57c5683169
+    # token:1ee437e1fcd44e6b9df11958290ba4c6
+    url: https://ropsten.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169
+#    url: https://mainnet.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169
+#    url: http://192.168.1.200:8545
+#    url: http://localhost:8545
+#    url: http://47.75.177.252:8545
+  wallet:
+    keystore:
+#      path: /Users/yimcarson/Workspace/aipay/aipay-wallet/keystore
+#      path: /data/keystore
+      path: ./keystore
