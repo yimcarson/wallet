@@ -13,7 +13,6 @@ import org.web3j.abi.datatypes.Function;
 import org.web3j.abi.datatypes.Type;
 import org.web3j.abi.datatypes.generated.Uint256;
 import org.web3j.crypto.*;
-import org.web3j.exceptions.MessageDecodingException;
 import org.web3j.protocol.Web3j;
 import org.web3j.protocol.core.DefaultBlockParameter;
 import org.web3j.protocol.core.DefaultBlockParameterName;
@@ -263,9 +262,9 @@ public class EthereumUtils {
         }
     }
 
-    public static EthTransaction getEthTransaction(String transactionHash) throws Exception {
+    public static org.web3j.protocol.core.methods.response.Transaction getTransaction(String transactionHash) throws Exception {
         EthTransaction ethTransaction = getWeb3j().ethGetTransactionByHash(transactionHash).send();
-        return ethTransaction;
+        return ethTransaction.getTransaction().get();
     }
 
     public static BigInteger getBlockNumber() throws IOException {
@@ -294,7 +293,8 @@ public class EthereumUtils {
         refMethod.setAccessible(true);
         Address to = (Address) refMethod.invoke(null, _to, 0, Address.class);
         Uint256 value = (Uint256) refMethod.invoke(null, _value, 0, Uint256.class);
-        System.out.printf("to:%s\n", to.toString());
-        System.out.printf("value:%s\n", value.getValue());
+        System.out.printf("MethodID: %s\n", methodId);
+        System.out.printf("[0]: %s\n", to.toString());
+        System.out.printf("[1]: %s\n", value.getValue());
     }
 }

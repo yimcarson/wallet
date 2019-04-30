@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.web3j.abi.TypeDecoder;
 import org.web3j.crypto.CipherException;
 import org.web3j.protocol.core.methods.response.EthBlock;
+import org.web3j.protocol.core.methods.response.EthTransaction;
+import org.web3j.protocol.core.methods.response.Transaction;
 import org.web3j.utils.Numeric;
 
 import java.io.IOException;
@@ -22,7 +24,10 @@ public class EthereumUtilsTest {
     @Before
     public void init() {
         EthereumUtils.setKeystorePath("./keystore");
-        EthereumUtils.setUrl("https://ropsten.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
+//        EthereumUtils.setUrl("https://ropsten.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
+//        EthereumUtils.setUrl("https://rinkeby.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
+//        EthereumUtils.setUrl("http://47.75.177.252:8545");
+        EthereumUtils.setUrl("http://192.168.1.200:8545");
     }
 
     @Test
@@ -57,7 +62,7 @@ public class EthereumUtilsTest {
     @Test
     public void testGetBalance() {
         try {
-            BigDecimal balance = EthereumUtils.getBalance("0xedc66095d5e2109531c47b045312afd60bbcc5f8");
+            BigDecimal balance = EthereumUtils.getBalance("0x01e02c56248359183Ce361C4BceD3F939183F42D");
             System.out.println(balance);
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,11 +102,46 @@ public class EthereumUtilsTest {
     }
 
     @Test
+    public void testGetTransaction() {
+        try {
+            Transaction transaction = transaction = EthereumUtils.getTransaction("0x42797b0f19bada1abc6693f69cdbf81b4cfc247350543482ba9e2d35fb2d8cb8");
+            BigInteger blockNumber = transaction.getBlockNumber();// 5455188
+            String hash = transaction.getHash(); // 0x42797b0f19bada1abc6693f69cdbf81b4cfc247350543482ba9e2d35fb2d8cb8
+            String from = transaction.getFrom(); // 0x01e02c56248359183ce361c4bced3f939183f42d
+            String to = transaction.getTo(); // 0x31bc5f4c55d9aba40297ed4083c76fd652b90ee1
+            BigInteger value = transaction.getValue(); // 0
+            String valueRaw = transaction.getValueRaw(); // 0x0
+            String input = transaction.getInput(); // 0xa9059cbb00000000000000000000000092c417ae0cdc3e0e148d48a770ca9159d621fbf60000000000000000000000000000000000000000033b2e3c9fd0803ce8000000
+            BigInteger nonce = transaction.getNonce(); // 62
+            String nonceRaw = transaction.getNonceRaw(); // 0x3e
+            String blockHash = transaction.getBlockHash(); // 0x22b5e088eebae98280b2c58588f6432f2fcb4e70b17b10d263832617e2192468
+            String blockNumberRaw = transaction.getBlockNumberRaw(); // 0x533d54
+            Long chainId = transaction.getChainId(); // 3
+            String creates = transaction.getCreates(); // null
+            BigInteger gas = transaction.getGas(); // 54757
+            String gasRaw = transaction.getGasRaw(); // 0xd5e5
+            BigInteger gasPrice = transaction.getGasPrice(); // 10000000000
+            String gasPriceRaw = transaction.getGasPriceRaw(); // 0x2540be400
+            String publicKey = transaction.getPublicKey(); // null
+            String raw = transaction.getRaw(); // null
+            long v = transaction.getV(); // 42
+            String s = transaction.getS(); // 0x4624528ab3b9d75616bcacbb535ad82ee4c0e1b47905b24a2521bd0ff3875c2a
+            String r = transaction.getR(); // 0xab215a948bc34e000260943b8346bf357e949094194e384ac9d9caf205f2288a
+            BigInteger transactionIndex = transaction.getTransactionIndex(); // 1
+            String transactionIndexRaw = transaction.getTransactionIndexRaw(); // 0x1
+            System.out.println(transaction.getHash());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
     public void testGetTransactionList() {
         try {
             List<EthBlock.TransactionResult> txList = EthereumUtils.getTransactionList(BigInteger.valueOf(5467647L));
             txList.forEach(tx -> {
-                EthBlock.TransactionObject transaction = (EthBlock.TransactionObject) tx.get();
+//                EthBlock.TransactionObject transaction = (EthBlock.TransactionObject) tx.get();
+                Transaction transaction = (Transaction) tx.get();
                 BigInteger blockNumber = transaction.getBlockNumber();
                 String hash = transaction.getHash();
                 String from = transaction.getFrom();
@@ -127,9 +167,26 @@ public class EthereumUtilsTest {
                 BigInteger transactionIndex = transaction.getTransactionIndex();
                 String transactionIndexRaw = transaction.getTransactionIndexRaw();
                 System.out.println(transaction.getHash());
-
             });
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void testParseInput() {
+        try {
+            //0x
+            // a9059cbb
+            // 00000000000000000000000092c417ae0cdc3e0e148d48a770ca9159d621fbf6
+            // 0000000000000000000000000000000000000000033b2e3c9fd0803ce8000000
+            EthereumUtils.parseInput("0xa9059cbb00000000000000000000000092c417ae0cdc3e0e148d48a770ca9159d621fbf60000000000000000000000000000000000000000033b2e3c9fd0803ce8000000");
+            System.out.println(new BigInteger("a9059cbb", 16));
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
     }
