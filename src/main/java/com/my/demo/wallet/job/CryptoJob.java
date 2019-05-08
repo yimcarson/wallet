@@ -6,13 +6,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
-public class TransactionJob extends QuartzJobBean {
-    private static final Logger logger = LoggerFactory.getLogger(TransactionJob.class);
+public class CryptoJob extends QuartzJobBean {
+    private static final Logger logger = LoggerFactory.getLogger(CryptoJob.class);
 
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        logger.info("==> {} start.", "TransactionJob");
+        logger.info("==> {} start.", "CryptoJob");
 
-        logger.info("<== {} end.", "TransactionJob");
+        logger.info("<== {} end.", "CryptoJob");
     }
 }
