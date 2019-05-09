@@ -43,4 +43,12 @@ public class CryptoTransactionServiceTest {
         CryptoTransaction result = cryptoTransactionService.save(record);
         System.out.println(result);
     }
+
+    @Test
+    public void testCount() {
+        long counter = cryptoTransactionService.count(CryptoTransaction.builder()
+                .fromAddress("")
+                .status(CryptoTransaction.TransactionStatus.PENDING.getStatus())
+                .build());
+    }
 }

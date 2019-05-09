@@ -1,6 +1,7 @@
 package com.my.demo.wallet.util;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -91,17 +92,21 @@ public class EthereumUtils {
         return fileName;
     }
 
-    public static BigDecimal getBalance(String address, String contract, int decimals) throws Exception {
-        List<Type> inputParameters = new ArrayList<>();
-        inputParameters.add(new Address(address));
-        Function function = new Function("balanceOf",
-                inputParameters,
-                Collections.<TypeReference<?>>emptyList());
-        String data = FunctionEncoder.encode(function);
-        Transaction transaction = Transaction.createEthCallTransaction(null, contract, data);
-        String result = getWeb3j().ethCall(transaction, DefaultBlockParameterName.LATEST).send().getResult();
-        BigInteger balance = Numeric.decodeQuantity(result);
-        return new BigDecimal(balance).divide(BigDecimal.TEN.pow(decimals));
+    public static BigDecimal getBalance(String address, String contract, int decimals) throws IOException {
+        if (StringUtils.isBlank(contract)) {
+            return getBalance(address);
+        } else {
+            List<Type> inputParameters = new ArrayList<>();
+            inputParameters.add(new Address(address));
+            Function function = new Function("balanceOf",
+                    inputParameters,
+                    Collections.<TypeReference<?>>emptyList());
+            String data = FunctionEncoder.encode(function);
+            Transaction transaction = Transaction.createEthCallTransaction(null, contract, data);
+            String result = getWeb3j().ethCall(transaction, DefaultBlockParameterName.LATEST).send().getResult();
+            BigInteger balance = Numeric.decodeQuantity(result);
+            return new BigDecimal(balance).divide(BigDecimal.TEN.pow(decimals));
+        }
     }
 
     public static BigDecimal getBalance(String address, int decimals) throws IOException {
@@ -109,7 +114,7 @@ public class EthereumUtils {
         return new BigDecimal(balance).divide(BigDecimal.TEN.pow(decimals));
     }
 
-    public static BigDecimal getBalance(String address) throws Exception {
+    public static BigDecimal getBalance(String address) throws IOException {
         BigInteger balance = getWeb3j().ethGetBalance(address, DefaultBlockParameterName.LATEST).send().getBalance();
         return Convert.fromWei(balance.toString(), Convert.Unit.ETHER);
     }
@@ -198,7 +203,11 @@ public class EthereumUtils {
     }
 
     public static String getPrivateKey(String password, String keystore) throws IOException, CipherException {
-        return getPrivateKey(password, new File(KEYSTORE_PATH, keystore));
+        if (StringUtils.isBlank(password)) {
+            return getPrivateKey(new File(KEYSTORE_PATH, keystore));
+        } else {
+            return getPrivateKey(password, new File(KEYSTORE_PATH, keystore));
+        }
     }
 
     public static String getPrivateKey(String password, File keystore) throws IOException, CipherException {

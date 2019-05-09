@@ -74,4 +74,13 @@ public class CryptoTransactionRepositoryTest {
                 .coin(CryptoCoin.builder().id(1L).build())
                 .build());
     }
+
+    @Test
+    public void testCount() {
+        long counter = cryptoTransactionRepository.count(Example.of(CryptoTransaction.builder()
+                .fromAddress("0x01e02c56248359183Ce361C4BceD3F939183F42D")
+                .status(CryptoTransaction.TransactionStatus.PENDING.getStatus())
+                .build()));
+        System.out.println(counter);
+    }
 }

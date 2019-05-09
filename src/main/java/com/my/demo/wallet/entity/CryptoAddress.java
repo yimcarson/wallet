@@ -1,9 +1,6 @@
 package com.my.demo.wallet.entity;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -35,4 +32,16 @@ public class CryptoAddress {
     private Date modifyTime;
 
     private Boolean isDelete;
+
+    @AllArgsConstructor
+    @Getter
+    public enum CoinType {
+        SYS((byte) 0, "系统地址"),
+        USER((byte) 1, "用户地址"),
+        ;
+
+        private Byte type;
+
+        private String desc;
+    }
 }
