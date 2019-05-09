@@ -27,7 +27,7 @@ spring:
     database: mysql
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
   redis:
     database: 0
