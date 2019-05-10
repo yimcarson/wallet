@@ -3,6 +3,7 @@ package com.my.demo.wallet.util;
 import com.google.common.collect.ImmutableList;
 import org.bitcoinj.core.*;
 import org.bitcoinj.net.discovery.DnsDiscovery;
+import org.bitcoinj.params.MainNetParams;
 import org.bitcoinj.params.TestNet2Params;
 import org.bitcoinj.params.TestNet3Params;
 import org.bitcoinj.store.BlockStore;
@@ -81,6 +82,7 @@ public class BitcoinUtilsTest {
 //            System.out.println(wallet.currentReceiveAddress());
             List<ECKey> keyList = wallet.getImportedKeys();
             for (ECKey key : keyList) {
+                System.out.println(key.toAddress(MainNetParams.get()));
                 System.out.printf("Private Key : %s\n", key.getPrivateKeyAsHex());
             }
             System.out.println(wallet.getBalance());
