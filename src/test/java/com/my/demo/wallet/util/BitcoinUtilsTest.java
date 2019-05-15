@@ -157,17 +157,19 @@ public class BitcoinUtilsTest {
 
 
             Wallet wallet = Wallet.fromKeys(TestNet3Params.get(), ownerKeys);
+
+
+
             Coin balance = wallet.getBalance();
             System.out.println(balance);
             WalletTransaction walletTransaction = new WalletTransaction(WalletTransaction.Pool.UNSPENT, transaction);
+            System.out.println(walletTransaction.getTransaction().getHashAsString());
 
 
-            SendRequest request = SendRequest.to(to, value);
-            request.changeAddress = ownerAddress;
-
-
-            Transaction tx = wallet.sendCoinsOffline(request);
-            System.out.println(tx);
+//            SendRequest request = SendRequest.to(to, value);
+//            request.changeAddress = ownerAddress;
+//            Transaction tx = wallet.sendCoinsOffline(request);
+//            System.out.println(tx);
         } catch (Exception e) {
             e.printStackTrace();
         }

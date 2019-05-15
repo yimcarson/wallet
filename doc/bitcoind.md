@@ -1,6 +1,10 @@
 # Bitcoin RPC
 >version 0.17
 
+```bash
+bitcoind -datadir=/root/.bitcoin -conf=/root/.bitcoin/bitcoin.conf -daemon
+```
+
 ### 查看账户余额
 
 ```bash
