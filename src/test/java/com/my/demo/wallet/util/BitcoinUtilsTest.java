@@ -18,6 +18,7 @@ import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
@@ -170,5 +171,17 @@ public class BitcoinUtilsTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    public void testBiginteger() {
+        System.out.println(UUID.randomUUID().toString().replace("-", ""));
+        /*
+        0ca32dc3
+        dd464ef3
+        b33745ff
+        20321b82
+         */
+        System.out.println(new BigInteger("0ca32dc3dd464ef3b33745ff20321b825d7660fe09b2431583b68d8b3c8297b2", 16));
     }
 }
