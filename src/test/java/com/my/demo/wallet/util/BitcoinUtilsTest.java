@@ -11,12 +11,15 @@ import org.bitcoinj.store.BlockStoreException;
 import org.bitcoinj.store.MemoryBlockStore;
 import org.bitcoinj.wallet.*;
 import org.junit.Test;
+import sun.nio.cs.ext.GBK;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
@@ -185,5 +188,15 @@ public class BitcoinUtilsTest {
         20321b82
          */
         System.out.println(new BigInteger("0ca32dc3dd464ef3b33745ff20321b825d7660fe09b2431583b68d8b3c8297b2", 16));
+    }
+
+    @Test
+    public void testDecode() {
+        try {
+            byte[] bytes = Base64.getDecoder().decode("iZj6c1y15z8msatce5zpy6Z");
+            System.out.println(new BigInteger(bytes));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

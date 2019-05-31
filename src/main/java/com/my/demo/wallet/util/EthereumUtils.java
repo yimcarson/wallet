@@ -211,7 +211,7 @@ public class EthereumUtils {
     }
 
     public static String getPrivateKey(String password, File keystore) throws IOException, CipherException {
-        password = DigestUtils.md5Hex(password + PASSWORD_SALT);
+//        password = DigestUtils.md5Hex(password + PASSWORD_SALT);
         logger.debug("password:{}", password);
         Credentials credentials = WalletUtils.loadCredentials(password, keystore);
         return credentials.getEcKeyPair().getPrivateKey().toString(RADIX);

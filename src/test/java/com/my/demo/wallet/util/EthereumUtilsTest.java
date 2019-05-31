@@ -24,10 +24,11 @@ public class EthereumUtilsTest {
     @Before
     public void init() {
         EthereumUtils.setKeystorePath("./keystore");
-//        EthereumUtils.setUrl("https://ropsten.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
+//        EthereumUtils.setUrl("https://mainnet.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
+        EthereumUtils.setUrl("https://ropsten.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
 //        EthereumUtils.setUrl("https://rinkeby.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
 //        EthereumUtils.setUrl("http://47.75.177.252:8545");
-        EthereumUtils.setUrl("http://192.168.1.200:8545");
+//        EthereumUtils.setUrl("http://192.168.1.200:8545");
     }
 
     @Test
@@ -50,7 +51,7 @@ public class EthereumUtilsTest {
     @Test
     public void testGetPrivateKey() {
         try {
-            String privateKey = EthereumUtils.getPrivateKey("UTC--2019-04-24T04-57-23.490000000Z--edc66095d5e2109531c47b045312afd60bbcc5f8.json");
+            String privateKey = EthereumUtils.getPrivateKey("vppj6B5DHO26fI8z", "UTC--2019-05-08T10-47-08.124534678Z--f7020248e3a33a92cc1d3eeb038935d8ede86ea3");
             System.out.println(privateKey);
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,7 +63,7 @@ public class EthereumUtilsTest {
     @Test
     public void testGetBalance() {
         try {
-            BigDecimal balance = EthereumUtils.getBalance("0x01e02c56248359183Ce361C4BceD3F939183F42D");
+            BigDecimal balance = EthereumUtils.getBalance("0x92C417ae0cdC3e0e148d48A770ca9159D621FBF6", "0xf749b654531f62ab24d5d4243bb8b27e702102c8", 5);
             System.out.println(balance);
         } catch (Exception e) {
             e.printStackTrace();
@@ -84,7 +85,7 @@ public class EthereumUtilsTest {
         // 0x301d65ea5e3b6d34fe359985421414cca8010c51
         // 0x136f8d2ab5c4b60068a7925d26bf08de18ba4a97
         try {
-            String symbol = EthereumUtils.getSymbol("0x301d65ea5e3b6d34fe359985421414cca8010c51");
+            String symbol = EthereumUtils.getSymbol("0xf749b654531f62ab24d5d4243bb8b27e702102c8");
             System.out.println(symbol);
         } catch (IOException e) {
             e.printStackTrace();

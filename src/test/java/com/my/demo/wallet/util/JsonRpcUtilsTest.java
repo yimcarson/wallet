@@ -9,147 +9,8 @@ import org.junit.Test;
 import java.net.URL;
 import java.util.*;
 
-/**
- * == Blockchain ==
- *     callcontract "address" "data" ( address )
- *     getaccountinfo "address"
- *     getbestblockhash
- *     getblock "blockhash" ( verbosity )
- *     getblockchaininfo
- *             getblockcount
- *     getblockhash height
- *     getblockheader "hash" ( verbose )
- *     getchaintips
- *     getchaintxstats ( nblocks blockhash )
- *     getdifficulty
- *     getmempoolancestors txid (verbose)
- *     getmempooldescendants txid (verbose)
- *     getmempoolentry txid
- *     getmempoolinfo
- *     getrawmempool ( verbose )
- *     getstorage "address"
- *     gettransactionreceipt "hash"
- *     gettxout "txid" n ( include_mempool )
- *     gettxoutproof ["txid",...] ( blockhash )
- *     gettxoutsetinfo
- *     listcontracts (start maxDisplay)
- *     preciousblock "blockhash"
- *     pruneblockchain
- *             savemempool
- *     searchlogs <fromBlock> <toBlock> (address) (topics)
- *     verifychain ( checklevel nblocks )
- *     verifytxoutproof "proof"
- *     waitforlogs (fromBlock) (toBlock) (filter) (minconf)
- *
- *             == Control ==
- *     getmemoryinfo ("mode")
- *     help ( "command" )
- *     logging ( <include> <exclude> )
- *     stop
- *             uptime
- *
- * == Generating ==
- *     generate nblocks ( maxtries )
- *     generatetoaddress nblocks address (maxtries)
- *
- * == Mining ==
- *     getblocktemplate ( TemplateRequest )
- *     getmininginfo
- *     getnetworkhashps ( nblocks height )
- *     getstakinginfo
- *     getsubsidy [nTarget]
- *     prioritisetransaction <txid> <dummy value> <fee delta>
- *     submitblock "hexdata"  ( "dummy" )
- *
- *             == Network ==
- *     addnode "node" "add|remove|onetry"
- *     clearbanned
- *     disconnectnode "[address]" [nodeid]
- *     getaddednodeinfo ( "node" )
- *     getconnectioncount
- *             getnettotals
- *     getnetworkinfo
- *             getpeerinfo
- *     listbanned
- *             ping
- *     setban "subnet" "add|remove" (bantime) (absolute)
- *     setnetworkactive true|false
- *
- *             == Rawtransactions ==
- *     combinerawtransaction ["hexstring",...]
- *     createrawtransaction [{"txid":"id","vout":n},...] {"address":amount,"data":"hex",...} ( locktime ) ( replaceable )
- *     decoderawtransaction "hexstring" ( iswitness )
- *     decodescript "hexstring"
- *     fromhexaddress "hexaddress"
- *     fundrawtransaction "hexstring" ( options iswitness )
- *     gethexaddress "address"
- *     getrawtransaction "txid" ( verbose "blockhash" )
- *     sendrawtransaction "hexstring" ( allowhighfees )
- *     signrawtransaction "hexstring" ( [{"txid":"id","vout":n,"scriptPubKey":"hex","redeemScript":"hex"},...] ["privatekey1",...] sighashtype )
- *
- *             == Util ==
- *     createmultisig nrequired ["key",...]
- *     estimatefee nblocks
- *     estimatesmartfee conf_target ("estimate_mode")
- *     signmessagewithprivkey "privkey" "message"
- *     validateaddress "address"
- *     verifymessage "address" "signature" "message"
- *
- *             == Wallet ==
- *     abandontransaction "txid"
- *     abortrescan
- *     addmultisigaddress nrequired ["key",...] ( "account" "address_type" )
- *     backupwallet "destination"
- *     bumpfee "txid" ( options )
- *     createcontract "bytecode" (gaslimit gasprice "senderaddress" broadcast)
- *     dumpprivkey "address"
- *     dumpwallet "filename"
- *     getaccount "address"
- *     getaccountaddress "account"
- *     getaddressesbyaccount "account"
- *     getbalance ( "account" minconf include_watchonly )
- *     getnewaddress ( "account" "address_type" )
- *     getrawchangeaddress ( "address_type" )
- *     getreceivedbyaccount "account" ( minconf )
- *     getreceivedbyaddress "address" ( minconf )
- *     gettransaction "txid" ( include_watchonly ) (waitconf)
- *     getunconfirmedbalance
- *             getwalletinfo
- *     importaddress "address" ( "label" rescan p2sh )
- *     importmulti "requests" ( "options" )
- *     importprivkey "qtumprivkey" ( "label" ) ( rescan )
- *     importprunedfunds
- *     importpubkey "pubkey" ( "label" rescan )
- *     importwallet "filename"
- *     keypoolrefill ( newsize )
- *     listaccounts ( minconf include_watchonly)
- *     listaddressgroupings
- *             listlockunspent
- *     listreceivedbyaccount ( minconf include_empty include_watchonly)
- *     listreceivedbyaddress ( minconf include_empty include_watchonly)
- *     listsinceblock ( "blockhash" target_confirmations include_watchonly include_removed )
- *     listtransactions ( "account" count skip include_watchonly)
- *     listunspent ( minconf maxconf  ["addresses",...] [include_unsafe] [query_options])
- *     listwallets
- *     lockunspent unlock ([{"txid":"txid","vout":n},...])
- *     move "fromaccount" "toaccount" amount ( minconf "comment" )
- *     removeprunedfunds "txid"
- *     rescanblockchain ("start_height") ("stop_height")
- *     reservebalance [<reserve> [amount]]
- *     sendfrom "fromaccount" "toaddress" amount ( minconf "comment" "comment_to" )
- *     sendmany "fromaccount" {"address":amount,...} ( minconf "comment" ["address",...] replaceable conf_target "estimate_mode")
- *     sendmanywithdupes "fromaccount" {"address":amount,...} ( minconf "comment" ["address",...] )
- *     sendtoaddress "address" amount ( "comment" "comment_to" subtractfeefromamount replaceable conf_target "estimate_mode")
- *     sendtocontract "contractaddress" "data" (amount gaslimit gasprice senderaddress broadcast)
- *     setaccount "address" "account"
- *     settxfee amount
- *     signmessage "address" "message"
- *     walletlock
- *     walletpassphrase "passphrase" timeout stakingonly
- *     walletpassphrasechange "oldpassphrase" "newpassphrase"
- */
 public class JsonRpcUtilsTest {
-    private static final String RPC_HOST = "47.75.177.252";
+    private static final String RPC_HOST = "192.168.1.201";
 
     private static final String RPC_PORT = "18332";
 
@@ -172,7 +33,6 @@ public class JsonRpcUtilsTest {
         String cred = Base64.encodeBytes((RPC_USER + ":" + RPC_PASS).getBytes());
         Map<String, String> headers = new HashMap<String, String>();
         headers.put("Authorization", "Basic " + cred);
-        System.out.println("Basic " + cred);
         headers.put("Content-Type", "application/json");
         client = new JsonRpcHttpClient(new URL("http://" + RPC_HOST + ":" + RPC_PORT), headers);
     }
@@ -239,7 +99,7 @@ public class JsonRpcUtilsTest {
     @Test
     public void getnewaddress() {
         methodName = "getnewaddress";
-        argument = new Object[]{"test_user_1"};
+        argument = new Object[]{"test_user_3"};
         clazz = Object.class;
     }
 
@@ -251,7 +111,7 @@ public class JsonRpcUtilsTest {
     @Test
     public void getaddressesbyaccount() {
         methodName = "getaddressesbyaccount";
-        argument = new Object[]{"test_user_1"};
+        argument = new Object[]{"test_user_3"};
         clazz = Object.class;
     }
 
@@ -275,7 +135,7 @@ public class JsonRpcUtilsTest {
     @Test
     public void dumpprivkey() {
         methodName = "dumpprivkey";
-        argument = new Object[]{"2N2q9imkFkp6EjP6GovH5ytabBURUrEbMw3"};
+        argument = new Object[]{"2N7yZXGDUGPDz1JQmShTx9s4PGj7zxezb5h"};
         clazz = Object.class;
     }
 
@@ -300,10 +160,10 @@ public class JsonRpcUtilsTest {
     public void createrawtransaction() {
         methodName = "createrawtransaction";
         Map<String, Object> tx = new HashMap<>();
-        tx.put("txid", "3ce30f7cb0452105aaafad17b4dac46dc0860e83b97fd6f74368735c61fabed1");
-        tx.put("vout", 0);
+        tx.put("txid", "f9bc2954868a98915bb39ad5ec4cfbab6219193d497effd0eea895ad4b6f4753");
+        tx.put("vout", 1);
         Map<String, Object> address = new HashMap<>();
-        address.put("2NADEYUqBcKziLfdRrafsoedFm1gxfdpd6D", 0.001);
+        address.put("2Mu6Pyj6X5pMvqko4gH81JQna9To6d7Gqd9", 0.001);
         List<Map<String, Object>> list = new ArrayList<>();
         list.add(tx);
         argument = new Object[]{list, address};
@@ -311,14 +171,11 @@ public class JsonRpcUtilsTest {
     }
 
     /**
-     * 签名交易串
-     * Request {"id":"920622720","jsonrpc":"2.0","method":"signrawtransaction","params":["0200000001f64ea5001d9c33919645d9b30d6313c77eb2720bb5281998da45c5439cf0d3fd0100000000ffffffff01a08601000000000017a914ba19c510d04d7ceda50d7bfb665833ab5ada15958700000000"]}
-     * JSON-PRC Response: {"result":{"hex":"0200000001f64ea5001d9c33919645d9b30d6313c77eb2720bb5281998da45c5439cf0d3fd0100000000ffffffff01a08601000000000017a914ba19c510d04d7ceda50d7bfb665833ab5ada15958700000000","complete":false,"errors":[{"txid":"fdd3f09c43c545da981928b50b72b27ec713630db3d9459691339c1d00a54ef6","vout":1,"witness":[],"scriptSig":"","sequence":4294967295,"error":"Input not found or already spent"}]},"error":null,"id":"920622720"}
+     * 更新指定的裸交易
      */
-    @Test
-    public void signrawtransaction() {
-        methodName = "signrawtransaction";
-        argument = new Object[]{"0200000001d1befa615c736843f7d67fb9830e86c06dc4dab417adafaa052145b07c0fe33c0100000000ffffffff01a08601000000000017a914ba19c510d04d7ceda50d7bfb665833ab5ada15958700000000"};
+    public void fundrawtransaction() {
+        methodName = "fundrawtransaction";
+        argument = new Object[]{};
         clazz = Object.class;
     }
 
@@ -330,7 +187,7 @@ public class JsonRpcUtilsTest {
     @Test
     public void signrawtransactionwithkey() {
         methodName = "signrawtransactionwithkey";
-        argument = new Object[]{"0200000001d1befa615c736843f7d67fb9830e86c06dc4dab417adafaa052145b07c0fe33c0000000000ffffffff01a08601000000000017a914ba19c510d04d7ceda50d7bfb665833ab5ada15958700000000", new String[]{"cT2nq6H4aYurfvbYS9nK9LgqWeg3hRK4XirANMccZ8iEeQgzcaCe"}};
+        argument = new Object[]{"020000000153476f4bad95a8eed0ff7e493d191962abfb4cecd59ab35b91988a865429bcf90100000000ffffffff01a08601000000000017a9141444d8f3c0c0f852ee6efaf653ef059966b00b4c8700000000", new String[]{"cT2nq6H4aYurfvbYS9nK9LgqWeg3hRK4XirANMccZ8iEeQgzcaCe"}};
         clazz = Object.class;
     }
 
@@ -342,7 +199,7 @@ public class JsonRpcUtilsTest {
     @Test
     public void sendrawtransaction() {
         methodName = "sendrawtransaction";
-        argument = new Object[]{"02000000000101d1befa615c736843f7d67fb9830e86c06dc4dab417adafaa052145b07c0fe33c00000000171600148fba0f599ad91529ac0bc5396cc37e29d40323b0ffffffff01a08601000000000017a914ba19c510d04d7ceda50d7bfb665833ab5ada1595870247304402204bb6c791309024be09e819813595d417940fab3f2108d7988e3c59051e6c454c02200bf5949822ff14cf6c8b6f41e2796a1a28b499436d69bdec23e646e009a197530121028273ba1a2f8c5d60016fcf3501e7417b4ce0711f2b5706ca9e2b5be5c745918d00000000"};
+        argument = new Object[]{"0200000000010153476f4bad95a8eed0ff7e493d191962abfb4cecd59ab35b91988a865429bcf901000000171600148fba0f599ad91529ac0bc5396cc37e29d40323b0ffffffff01a08601000000000017a9141444d8f3c0c0f852ee6efaf653ef059966b00b4c8702473044022057d1eaa1e0cafeebab3acd126d11ad902df62f81ae2ff318f4fc4cd6e9ec98f2022007d2fff4577fe726e70130f39f47ff0c1b2a9d49b06ce2757bac452a1f7b8c340121028273ba1a2f8c5d60016fcf3501e7417b4ce0711f2b5706ca9e2b5be5c745918d00000000"};
         clazz = Object.class;
     }
 
@@ -355,7 +212,7 @@ public class JsonRpcUtilsTest {
     @Test
     public void getrawtransaction() {
         methodName = "getrawtransaction";
-        argument = new Object[]{"c054b29f985d506fad287c5a0531932992254dec053c44790df2e026aa649a89"};
+        argument = new Object[]{"b5ea312a8f8ba42fdf778bd25c72473df94726ad45b743f62110f5844042312f"};
         clazz = Object.class;
     }
 
@@ -367,7 +224,7 @@ public class JsonRpcUtilsTest {
     @Test
     public void decoderawtransaction() {
         methodName = "decoderawtransaction";
-        argument = new Object[]{"02000000000101d1befa615c736843f7d67fb9830e86c06dc4dab417adafaa052145b07c0fe33c00000000171600148fba0f599ad91529ac0bc5396cc37e29d40323b0ffffffff01a08601000000000017a914ba19c510d04d7ceda50d7bfb665833ab5ada1595870247304402204bb6c791309024be09e819813595d417940fab3f2108d7988e3c59051e6c454c02200bf5949822ff14cf6c8b6f41e2796a1a28b499436d69bdec23e646e009a197530121028273ba1a2f8c5d60016fcf3501e7417b4ce0711f2b5706ca9e2b5be5c745918d00000000"};
+        argument = new Object[]{"0200000000010153476f4bad95a8eed0ff7e493d191962abfb4cecd59ab35b91988a865429bcf901000000171600148fba0f599ad91529ac0bc5396cc37e29d40323b0ffffffff01a08601000000000017a9141444d8f3c0c0f852ee6efaf653ef059966b00b4c8702473044022057d1eaa1e0cafeebab3acd126d11ad902df62f81ae2ff318f4fc4cd6e9ec98f2022007d2fff4577fe726e70130f39f47ff0c1b2a9d49b06ce2757bac452a1f7b8c340121028273ba1a2f8c5d60016fcf3501e7417b4ce0711f2b5706ca9e2b5be5c745918d00000000"};
         clazz = Object.class;
     }
 }
