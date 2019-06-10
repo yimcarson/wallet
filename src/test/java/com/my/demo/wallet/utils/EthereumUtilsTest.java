@@ -1,18 +1,14 @@
-package com.my.demo.wallet.util;
+package com.my.demo.wallet.utils;
 
 
 import org.junit.Before;
 import org.junit.Test;
-import org.web3j.abi.TypeDecoder;
 import org.web3j.crypto.CipherException;
 import org.web3j.protocol.core.methods.response.EthBlock;
-import org.web3j.protocol.core.methods.response.EthTransaction;
 import org.web3j.protocol.core.methods.response.Transaction;
-import org.web3j.utils.Numeric;
 
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.InvalidAlgorithmParameterException;
@@ -25,8 +21,8 @@ public class EthereumUtilsTest {
     public void init() {
         EthereumUtils.setKeystorePath("./keystore");
 //        EthereumUtils.setUrl("https://mainnet.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
-        EthereumUtils.setUrl("https://ropsten.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
-//        EthereumUtils.setUrl("https://rinkeby.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
+//        EthereumUtils.setUrl("https://ropsten.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
+        EthereumUtils.setUrl("https://rinkeby.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
 //        EthereumUtils.setUrl("http://47.75.177.252:8545");
 //        EthereumUtils.setUrl("http://192.168.1.200:8545");
     }

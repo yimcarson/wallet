@@ -1,4 +1,4 @@
-package com.my.demo.wallet.util;
+package com.my.demo.wallet.utils;
 
 import com.googlecode.jsonrpc4j.JsonRpcHttpClient;
 import net.iharder.Base64;

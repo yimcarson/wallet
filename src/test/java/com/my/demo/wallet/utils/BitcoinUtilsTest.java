@@ -1,21 +1,17 @@
-package com.my.demo.wallet.util;
+package com.my.demo.wallet.utils;
 
-import com.google.common.collect.ImmutableList;
 import org.bitcoinj.core.*;
 import org.bitcoinj.net.discovery.DnsDiscovery;
 import org.bitcoinj.params.MainNetParams;
-import org.bitcoinj.params.TestNet2Params;
 import org.bitcoinj.params.TestNet3Params;
 import org.bitcoinj.store.BlockStore;
 import org.bitcoinj.store.BlockStoreException;
 import org.bitcoinj.store.MemoryBlockStore;
 import org.bitcoinj.wallet.*;
 import org.junit.Test;
-import sun.nio.cs.ext.GBK;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 import java.util.ArrayList;
