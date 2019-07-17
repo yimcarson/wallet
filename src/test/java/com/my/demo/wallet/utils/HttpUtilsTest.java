@@ -2,6 +2,8 @@ package com.my.demo.wallet.utils;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -40,6 +42,7 @@ public class HttpUtilsTest {
 
     @Test
     public void test() {
+        System.out.println(Arrays.asList(BigDecimal.ONE, BigDecimal.ONE, BigDecimal.ONE));
         for (int i = 0; i < 256; i++) {
             System.out.printf("%s\t%s\n", Integer.toHexString(i), (char) i);
         }

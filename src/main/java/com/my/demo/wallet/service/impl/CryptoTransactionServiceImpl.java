@@ -18,6 +18,7 @@ import org.web3j.crypto.CipherException;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -47,6 +48,11 @@ public class CryptoTransactionServiceImpl implements CryptoTransactionService {
     @Override
     public long count(CryptoTransaction record) {
         return cryptoTransactionRepository.count(Example.of(record));
+    }
+
+    @Override
+    public void fetch(BigInteger blockNumber) {
+
     }
 
     @Override

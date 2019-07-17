@@ -22,9 +22,10 @@ public class EthereumUtilsTest {
         EthereumUtils.setKeystorePath("./keystore");
 //        EthereumUtils.setUrl("https://mainnet.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
 //        EthereumUtils.setUrl("https://ropsten.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
-        EthereumUtils.setUrl("https://rinkeby.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
+//        EthereumUtils.setUrl("https://rinkeby.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
 //        EthereumUtils.setUrl("http://47.75.177.252:8545");
 //        EthereumUtils.setUrl("http://192.168.1.200:8545");
+        EthereumUtils.setUrl("http://47.91.224.65:8545");
     }
 
     @Test

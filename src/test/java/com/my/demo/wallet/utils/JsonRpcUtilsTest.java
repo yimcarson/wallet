@@ -10,9 +10,9 @@ import java.net.URL;
 import java.util.*;
 
 public class JsonRpcUtilsTest {
-    private static final String RPC_HOST = "192.168.1.201";
+    private static final String RPC_HOST = "47.56.67.166";
 
-    private static final String RPC_PORT = "18332";
+    private static final String RPC_PORT = "8332";
 
     private static final String RPC_USER = "test";
 
@@ -111,7 +111,7 @@ public class JsonRpcUtilsTest {
     @Test
     public void getaddressesbyaccount() {
         methodName = "getaddressesbyaccount";
-        argument = new Object[]{"test_user_3"};
+        argument = new Object[]{"goldbox_985147"};
         clazz = Object.class;
     }
 
