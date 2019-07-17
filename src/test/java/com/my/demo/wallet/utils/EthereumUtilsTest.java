@@ -1,8 +1,12 @@
 package com.my.demo.wallet.utils;
 
 
+import com.my.demo.wallet.Application;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.web3j.crypto.CipherException;
 import org.web3j.protocol.core.methods.response.EthBlock;
 import org.web3j.protocol.core.methods.response.Transaction;
@@ -16,16 +20,18 @@ import java.security.NoSuchAlgorithmException;
 import java.security.NoSuchProviderException;
 import java.util.List;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest(classes={Application.class})
 public class EthereumUtilsTest {
-    @Before
+//    @Before
     public void init() {
-        EthereumUtils.setKeystorePath("./keystore");
+//        EthereumUtils.setKeystorePath("./keystore");
 //        EthereumUtils.setUrl("https://mainnet.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
 //        EthereumUtils.setUrl("https://ropsten.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
 //        EthereumUtils.setUrl("https://rinkeby.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169");
 //        EthereumUtils.setUrl("http://47.75.177.252:8545");
 //        EthereumUtils.setUrl("http://192.168.1.200:8545");
-        EthereumUtils.setUrl("http://47.91.224.65:8545");
+//        EthereumUtils.setUrl("http://47.91.224.65:8545");
     }
 
     @Test

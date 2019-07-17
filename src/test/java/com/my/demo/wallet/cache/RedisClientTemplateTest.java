@@ -20,6 +20,6 @@ public class RedisClientTemplateTest {
 
     @Test
     public void testHset() {
-        redisClientTemplate.hset("config:eth", "field", "value");
+        redisClientTemplate.hset("block_index", "eth", "0");
     }
 }

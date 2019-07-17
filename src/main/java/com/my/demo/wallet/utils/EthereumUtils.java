@@ -48,7 +48,7 @@ public class EthereumUtils {
     private static String KEYSTORE_PATH;
 
     @Value("${ethereum.wallet.keystore.path:./keystore}")
-    public static void setKeystorePath(String keystorePath) {
+    public void setKeystorePath(String keystorePath) {
         File keystore = new File(keystorePath);
         if (!keystore.isDirectory()) {
             logger.info("==>Create keystore directory : {}", keystorePath);
@@ -60,7 +60,7 @@ public class EthereumUtils {
     private static String URL;
 
     @Value("${ethereum.rpcClient.url:http://localhost:8545}")
-    public static void setUrl(String url) {
+    public void setUrl(String url) {
         URL = url;
     }
 

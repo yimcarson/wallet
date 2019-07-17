@@ -1,6 +1,6 @@
 package com.my.demo.wallet.config;
 
-import com.my.demo.wallet.job.WithdrawalJob;
+import com.my.demo.wallet.job.UserDepositJob;
 import org.quartz.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Configuration;
 public class QuartzConfig {
     @Bean
     public JobDetail withdrawalJobDeail() {
-        return JobBuilder.newJob(WithdrawalJob.class).withIdentity("withdrawalJob").storeDurably().build();
+        return JobBuilder.newJob(UserDepositJob.class).withIdentity("userDepositJob").storeDurably().build();
     }
 
     @Bean
     public Trigger withdrawalJobTrigger() {
         CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule("*/30 * * * * ?");
         return TriggerBuilder.newTrigger().forJob(withdrawalJobDeail())
-                .withIdentity("withdrawalJob")
+                .withIdentity("userDepositJob")
                 .withSchedule(scheduleBuilder)
                 .build();
     }

@@ -25,7 +25,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
   jpa:
     database: mysql
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: validate
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -53,22 +53,26 @@ logging:
   pattern:
     dateformat: yyyy-MM-dd HH:mm:ss.SSS
   level:
-    com.my.demo.wallet: debug
+    com.my.demo.wallet: info
     org.springframework: warn
-    org.spring.springboot.dao: debug
+    org.spring.springboot.dao: warn
 
 
 ethereum:
   rpcClient:
     # token4dev:12ab05a5e3b24d75b4c43a57c5683169
     # token:1ee437e1fcd44e6b9df11958290ba4c6
-    url: https://ropsten.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169
+#    url: https://ropsten.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169
 #    url: https://mainnet.infura.io/v3/12ab05a5e3b24d75b4c43a57c5683169
 #    url: http://192.168.1.200:8545
 #    url: http://localhost:8545
 #    url: http://47.75.177.252:8545
+    url: http://47.91.224.65:8545
   wallet:
     keystore:
 #      path: /Users/yimcarson/Workspace/aipay/aipay-wallet/keystore
 #      path: /data/keystore
       path: ./keystore
+goldbox:
+  deposit:
+    api: http://eus.fxb.vip:8899/api/temp/manage/deposit/query/symbol/txid
