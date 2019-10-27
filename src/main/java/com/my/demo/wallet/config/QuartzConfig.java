@@ -14,7 +14,7 @@ public class QuartzConfig {
 
     @Bean
     public Trigger withdrawalJobTrigger() {
-        CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule("*/30 * * * * ?");
+        CronScheduleBuilder scheduleBuilder = CronScheduleBuilder.cronSchedule("*/1 * * * * ?");
         return TriggerBuilder.newTrigger().forJob(withdrawalJobDeail())
                 .withIdentity("userDepositJob")
                 .withSchedule(scheduleBuilder)

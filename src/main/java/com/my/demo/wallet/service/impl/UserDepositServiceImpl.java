@@ -7,6 +7,7 @@ import com.my.demo.wallet.repository.UserDepositRecordRepository;
 import com.my.demo.wallet.service.UserDepositService;
 import com.my.demo.wallet.utils.EthereumUtils;
 import com.my.demo.wallet.utils.HttpUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +40,17 @@ public class UserDepositServiceImpl implements UserDepositService {
             Transaction transaction = (Transaction) transactionResult.get();
             String to = transaction.getTo();
             String hash = transaction.getHash();
-            long addressCounter = userDepositAddressRepository.count(Example.of(UserDepositAddress.builder().address(to).build()));
+            logger.debug("to : {}", to);
+            logger.debug("hash : {}", hash);
+            if (StringUtils.isBlank(to) || StringUtils.isBlank(hash)) {
+                return;
+            }
+            long addressCounter = userDepositAddressRepository.count(Example.of(UserDepositAddress.builder().address(to.toLowerCase()).build()));
             if (addressCounter == 0) {
                 return;
             }
-            long hashCounter = userDepositRecordRepository.count(Example.of(UserDepositRecord.builder().hash(hash).build()));
-            if (hashCounter > 0) {
+            long hashCounter = userDepositRecordRepository.count(Example.of(UserDepositRecord.builder().hash(hash.toLowerCase()).build()));
+            if (hashCounter != 0) {
                 return;
             }
             logger.info("Handle transaction, hash : {}", hash);

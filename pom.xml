@@ -2,8 +2,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.my.demo</groupId>
-    <artifactId>wallet</artifactId>
-    <version>1.2.7.BETA</version>
+    <artifactId>wallet-job</artifactId>
+    <version>1.2.9.BETA</version>
     <packaging>jar</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>

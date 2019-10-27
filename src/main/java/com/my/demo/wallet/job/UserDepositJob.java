@@ -35,10 +35,9 @@ public class UserDepositJob extends QuartzJobBean {
                 ethBlockIndex = new BigInteger(ethBlockIndexStr);
             }
             logger.info("block_index : {}", ethBlockIndex);
-            BigInteger confirm = BigInteger.TEN;
             BigInteger blockNumber = EthereumUtils.getBlockNumber();
-            if (ethBlockIndex.add(confirm).compareTo(blockNumber) == -1) {
-                userDepositService.handleEthereumDeposit(blockNumber);
+            if (ethBlockIndex.compareTo(blockNumber) == -1) {
+                userDepositService.handleEthereumDeposit(ethBlockIndex);
                 redisClientTemplate.hset("block_index", "eth", ethBlockIndex.add(BigInteger.ONE).toString());
             }
         } catch (Exception e) {
